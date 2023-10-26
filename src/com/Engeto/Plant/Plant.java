@@ -29,24 +29,21 @@ public class Plant {
         try {
             if (dateOfPlanted.isAfter(dateOfWatering)) {
                 throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
-            }
+            }this.dateOfPlanted = LocalDate.now();
         } catch (PlantException e) {
             System.err.println("Chyba pri vytvárení rostliny - datum: " + e.getMessage());
             this.dateOfPlanted = LocalDate.now();
         }
     }
 
-    public Plant(String name,  LocalDate planted,int frequencyOfWatering) throws PlantException {
-        this(name, "", planted, LocalDate.now(),
-                frequencyOfWatering);       }
+    public Plant(String name, String notes, LocalDate planted, int frequencyOfWatering) throws PlantException {
+        this(name, "", planted, LocalDate.now(), frequencyOfWatering); }
 
     public Plant(String name) throws PlantException {
-        this(name, "", LocalDate.now(),
-                LocalDate.now(), 7);
+        this(name, "", LocalDate.now(),LocalDate.now(), 7); }
+
+    public Plant() {
     }
-
-
-
 
     // Metoda pro výpis informací o rostlině
     public void printPlantInfo() {
@@ -104,10 +101,14 @@ public class Plant {
         return "Název: " + name + "\nDatum poslední zálivky: " + dateOfWatering + "\nDoporučené datum další zálivky: " + nextWateringDate;
     }
 
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Plant{" +
+                "name='" + name + '\'' +
+                ", notes='" + notes + '\'' +
+                ", dateOfPlanted=" + dateOfPlanted +
+                ", dateOfWatering=" + dateOfWatering +
+                ", frequencyOfWatering=" + frequencyOfWatering +
+                '}';
+    }
 }
