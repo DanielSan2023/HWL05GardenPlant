@@ -1,0 +1,5 @@
+Růže; Krásná květina; 2023-10-26; 7
+Fialka; Malé květy; 2023-10-26; 7
+Sukulent; Masité listy; 2023-10-26; 21
+Orchidej; Exotický vzhled; 2023-10-26; 7
+Tulipán; Jarní květ; 2023-10-26; 7

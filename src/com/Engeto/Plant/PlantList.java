@@ -6,12 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PlantList {
-    private List<Plant> plants;//collekcia pre ukladanie plant
+    private static List<Plant> plants;//collekcia pre ukladanie plant
 
 
     public PlantList() {plants = new ArrayList<>();    }//inicializuje prazdny zoznam
@@ -106,8 +107,15 @@ public class PlantList {
         }
         String name = blocks[0].trim();         // Převeď textové položky na objekty
         String notes = blocks[1].trim();
-        LocalDate dateOfPlanted = LocalDate.parse(blocks[3].trim());
-        int frequencyOfWatering = Integer.parseInt(blocks[2].trim());
+        LocalDate dateOfPlanted = null;
+        try {                                   //Osetrenie formatu datumu
+            dateOfPlanted = LocalDate.parse(blocks[2].trim());
+           // System.out.println("Datum je správný: " + dateOfPlanted);
+        } catch (DateTimeParseException e) {
+            System.err.println("Chyba: Datum nebyl zadán ve správném formátu. "+ blocks[2].trim());
+            System.err.println("Spravny format:   2023-10-26");
+        }
+        int frequencyOfWatering = Integer.parseInt(blocks[3].trim());
         Plant newPlant =new Plant(name,notes,dateOfPlanted,frequencyOfWatering);
         PlantList.addPlant(newPlant);  // Ulož vytvořený objekt do košíku
     }

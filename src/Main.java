@@ -11,7 +11,7 @@ public class Main {
         try {
 //      plant1 = new Plant("Růže", "Krásná červená růže", LocalDate.of(2023, 5,
 //               15), LocalDate.of(2023, 5, 20), -1);
-        plant2 = new Plant("Tulipán", notes, LocalDate.of(2023, 5, 15),2);
+        plant2 = new Plant("Tulipán", "", LocalDate.of(2023, 5, 15),2);
 //        plant3 = new Plant("Fikus");
 //       plant4 = new Plant("Cerna Růže", "Krásná čierna růže", LocalDate.of(2023,
 //                7, 15), LocalDate.of(2023, 5, 19), 4);
@@ -48,13 +48,13 @@ public class Main {
         plants.printPlants();
         // vymazanie kvetiny
         plants.removePlantByName("Tulipán");
-
+        //nacitanie kvetin zo suboru
         try {
-            plants = PlantList.loadPlantsFromFile("NewPlant.txt");
+            plants = PlantList.loadPlantsFromFile("NewPlants.txt");
         } catch (PlantException e) {
             System.err.println("Chyba pri cteni ze souboru : "+e.getLocalizedMessage());
         }
-
+        plants.printPlants();
 
     }
 
