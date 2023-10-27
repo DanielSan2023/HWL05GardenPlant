@@ -48,14 +48,25 @@ public class Main {
         plants.printPlants();
         // vymazanie kvetiny
         plants.removePlantByName("Tulipán");
-        //nacitanie kvetin zo suboru
+        //nacitanie kvetin zo suboru : "NewPlants.txt"
         try {
             plants = PlantList.loadPlantsFromFile("NewPlants.txt");
         } catch (PlantException e) {
             System.err.println("Chyba pri cteni ze souboru : "+e.getLocalizedMessage());
         }
+        System.out.println("Citanie zo suboru: ");
         plants.printPlants();
 
+        //ulozenie zoznamu do suboru :"NewListPlants.txt"
+        try {
+            PlantList.saveToFile("NewListPlants.txt", plants);
+        } catch (PlantException e) {
+            System.err.println("Chyba pri zapise do souboru : "+e.getLocalizedMessage());
+        }
     }
+
+
+
+
 
     }

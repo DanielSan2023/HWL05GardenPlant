@@ -1,9 +1,6 @@
 package com.Engeto.Plant;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -50,37 +47,18 @@ public class PlantList {
 
             }
         }
-
-
-
-
-//    public void loadPlantsFromFile(String filename) throws PlantException {
-//        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename))) {
-//        while (scanner.hasNextLine()) {
-//                String line = scanner.nextLine();
-//                String[] parts = line.split(",");
-//                if (parts.length >= 4) {
-//                    String name = parts[0];
-//                    String notes = parts[1];
-//                    LocalDate planted = LocalDate.parse(parts[2]); // Předpokládáme, že datum je ve správném formátu
-//                    int frequencyOfWatering = Integer.parseInt(parts[3]);
-//
-//                    // Vytvoření nové rostliny a přidání do seznamu
-//                    plants.add(new Plant(name, notes, planted, frequencyOfWatering));
-//                } else {
-//                    throw new PlantException("Chybný formát dat ve souboru.");
-//                }
-//            }
-//        } catch (FileNotFoundException ex) {
-//            throw new PlantException("Soubor nebyl nalezen: " + ex.getMessage());
-//        } catch (IOException e) {
-//            throw new PlantException("Chyba při čtení souboru: " + e.getMessage());
-//        }
-//    }
-
-
-
-    public static PlantList loadPlantsFromFile(String filename) throws PlantException {
+                            // ulozim zoznam do suboru
+    public static void saveToFile(String filename, PlantList plants) throws PlantException {
+        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)))) {
+            for (Plant plant: plants.getPlants() ) {
+                writer.println(plant.getName()+ " ; " +plant.getNotes() + " ; "+plant.getDateOfPlanted() +
+                        " ; "+plant.getFrequencyOfWatering() );
+            }
+        } catch (IOException e) {
+            throw new PlantException("Chyba při zápisu do souboru '"+filename+"': "+e.getLocalizedMessage());
+        }
+    }
+    public static PlantList  loadPlantsFromFile(String filename) throws PlantException {
         PlantList result = new PlantList();
         int lineNumber = 1;
         try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename)))) { // Otevři soubor
