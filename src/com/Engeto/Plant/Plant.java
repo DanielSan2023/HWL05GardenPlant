@@ -10,31 +10,52 @@ public class Plant {
     private int frequencyOfWatering;
 
 
+//    public Plant(String name, String notes, LocalDate dateOfPlanted,
+//                 LocalDate dateOfWatering, int frequencyOfWatering) throws PlantException {
+//        this.name = name;
+//        this.notes = notes;
+//        this.dateOfWatering = dateOfWatering;
+//        try {    // testujeme ci tam nie je 0 alebo zaporne cislo
+//            if (frequencyOfWatering <= 0) {
+//                throw new PlantException("Neplatna frekvence zálivky: " + frequencyOfWatering);
+//            }
+//            this.frequencyOfWatering = frequencyOfWatering;
+//        } catch (PlantException e) {
+//            System.err.println("Chyba pri vytvárení rostliny: " + e.getMessage());
+//            int basicFrequency = 7;
+//            this.frequencyOfWatering = 7; // Nastavení výchozí frekvence na 7dni
+//            System.out.println("vychodzie pocet zalievky je " + basicFrequency);
+//        }
+//        try {
+//            if (dateOfPlanted.isAfter(dateOfWatering)) {
+//                throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
+//            }this.dateOfPlanted = LocalDate.now();
+//        } catch (PlantException e) {
+//            System.err.println("Chyba pri vytvárení rostliny - datum: " + e.getMessage());
+//            this.dateOfPlanted = LocalDate.now();
+//        }
+//    }
     public Plant(String name, String notes, LocalDate dateOfPlanted,
-                 LocalDate dateOfWatering, int frequencyOfWatering) throws PlantException {
-        this.name = name;
-        this.notes = notes;
-        this.dateOfWatering = dateOfWatering;
-        try {    // testujeme ci tam nie je 0 alebo zaporne cislo
-            if (frequencyOfWatering <= 0) {
-                throw new PlantException("Neplatna frekvence zálivky: " + frequencyOfWatering);
-            }
-            this.frequencyOfWatering = frequencyOfWatering;
-        } catch (PlantException e) {
-            System.err.println("Chyba pri vytvárení rostliny: " + e.getMessage());
-            int basicFrequency = 7;
-            this.frequencyOfWatering = 7; // Nastavení výchozí frekvence na 8dni
-            System.out.println("vychodzie pocet zalievky je " + basicFrequency);
-        }
-        try {
-            if (dateOfPlanted.isAfter(dateOfWatering)) {
-                throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
-            }this.dateOfPlanted = LocalDate.now();
-        } catch (PlantException e) {
-            System.err.println("Chyba pri vytvárení rostliny - datum: " + e.getMessage());
-            this.dateOfPlanted = LocalDate.now();
-        }
+             LocalDate dateOfWatering, int frequencyOfWatering) throws PlantException {
+    this.name = name;
+    this.notes = notes;
+
+    // Kontrola frekvence zalévání
+    if (frequencyOfWatering <= 0) {
+        throw new PlantException("Neplatna frekvence zálivky: " + frequencyOfWatering);
     }
+    this.frequencyOfWatering = frequencyOfWatering;
+
+    // Kontrola datumu zálivky
+    if (dateOfPlanted.isAfter(dateOfWatering)) {
+        throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
+    }
+
+    this.dateOfPlanted = dateOfPlanted;
+    this.dateOfWatering = dateOfWatering;
+}
+
+
 
     public Plant(String name, String notes, LocalDate planted, int frequencyOfWatering) throws PlantException {
         this(name, "", planted, LocalDate.now(), frequencyOfWatering); }
@@ -42,8 +63,13 @@ public class Plant {
     public Plant(String name) throws PlantException {
         this(name, "", LocalDate.now(),LocalDate.now(), 7); }
 
+
+    public Plant(String name, String notes) throws PlantException {
+        this(name, notes, LocalDate.now(),LocalDate.now(), 7);
+    }
     public Plant() {
     }
+
 
     // Metoda pro výpis informací o rostlině
     public void printPlantInfo() {

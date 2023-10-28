@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PlantList {
-    private static List<Plant> plants;//collekcia pre ukladanie plant
+    private static List<Plant> plants;  //collekcia pre ukladanie plant
 
 
     public PlantList() {plants = new ArrayList<>();    }//inicializuje prazdny zoznam
@@ -44,20 +44,33 @@ public class PlantList {
         public void printPlants() {
             for (Plant plant : plants) {
                 System.out.println("Názov kvetiny: " + plant.getName());
-
             }
         }
+        public void printPlantsWithWateringInfo() {
+            System.out.println("Nazov kvetiny :");
+        for (Plant plant : plants) {
+            System.out.println(  plant.getWateringInfo());
+        }
+    }
+
+
+
                             // ulozim zoznam do suboru
     public static void saveToFile(String filename, PlantList plants) throws PlantException {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)))) {
             for (Plant plant: plants.getPlants() ) {
-                writer.println(plant.getName()+ " ; " +plant.getNotes() + " ; "+plant.getDateOfPlanted() +
-                        " ; "+plant.getFrequencyOfWatering() );
+                writer.println(plant.getName()+ "\t" +plant.getNotes() +"\t"+plant.getFrequencyOfWatering()+"\t"+plant.getDateOfWatering()
+                        +"\t"+plant.getDateOfPlanted()     );
             }
         } catch (IOException e) {
             throw new PlantException("Chyba při zápisu do souboru '"+filename+"': "+e.getLocalizedMessage());
         }
     }
+
+
+
+
+
     public static PlantList  loadPlantsFromFile(String filename) throws PlantException {
         PlantList result = new PlantList();
         int lineNumber = 1;
@@ -74,31 +87,37 @@ public class PlantList {
 
         return result;
     }
-
     private static void parseLine(String line, PlantList plantList, int lineNumber) throws PlantException {
-        String[] blocks = line.split(";"); // rozděl řádek na bloky podle oddělovače
+        String[] blocks = line.split("\t"); // rozděl řádek na bloky podle tabulatora
         int numOfBlocks = blocks.length;         // Zkontroluj správný počet bloků
-        if (numOfBlocks != 4) {
+        if (numOfBlocks != 5) {
             throw new PlantException(
                     "Nesprávný počet položek na řádku: " + line +
                             "! Počet položek: "+numOfBlocks+".");
         }
         String name = blocks[0].trim();         // Převeď textové položky na objekty
         String notes = blocks[1].trim();
+        int frequencyOfWatering = Integer.parseInt(blocks[2].trim());
+
         LocalDate dateOfPlanted = null;
         try {                                   //Osetrenie formatu datumu
-            dateOfPlanted = LocalDate.parse(blocks[2].trim());
-           // System.out.println("Datum je správný: " + dateOfPlanted);
+            dateOfPlanted = LocalDate.parse(blocks[4].trim());
+            // System.out.println("Datum je správný: " + dateOfPlanted);
         } catch (DateTimeParseException e) {
-            System.err.println("Chyba: Datum nebyl zadán ve správném formátu. "+ blocks[2].trim());
+            System.err.println("Chyba: Datum nebyl zadán ve správném formátu. "+ blocks[4].trim());
             System.err.println("Spravny format:   2023-10-26");
         }
-        int frequencyOfWatering = Integer.parseInt(blocks[3].trim());
-        Plant newPlant =new Plant(name,notes,dateOfPlanted,frequencyOfWatering);
-        PlantList.addPlant(newPlant);  // Ulož vytvořený objekt do košíku
+
+        LocalDate dateOfWatering = LocalDate.parse(blocks[3].trim());
+
+
+        Plant newPlant =new Plant(name,notes,dateOfPlanted,dateOfWatering,frequencyOfWatering);
+        PlantList.addPlant(newPlant);  // Ulož vytvořený objekt do plants
     }
 
+
 }
+
 
 
 
