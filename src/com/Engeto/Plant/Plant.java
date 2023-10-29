@@ -2,7 +2,7 @@ package com.Engeto.Plant;
 
 import java.time.LocalDate;
 
-public class Plant {
+public class Plant implements Comparable<Plant> {
     private String name;
     private String notes;
     private LocalDate dateOfPlanted;
@@ -10,50 +10,33 @@ public class Plant {
     private int frequencyOfWatering;
 
 
-//    public Plant(String name, String notes, LocalDate dateOfPlanted,
-//                 LocalDate dateOfWatering, int frequencyOfWatering) throws PlantException {
-//        this.name = name;
-//        this.notes = notes;
-//        this.dateOfWatering = dateOfWatering;
-//        try {    // testujeme ci tam nie je 0 alebo zaporne cislo
-//            if (frequencyOfWatering <= 0) {
-//                throw new PlantException("Neplatna frekvence zálivky: " + frequencyOfWatering);
-//            }
-//            this.frequencyOfWatering = frequencyOfWatering;
-//        } catch (PlantException e) {
-//            System.err.println("Chyba pri vytvárení rostliny: " + e.getMessage());
-//            int basicFrequency = 7;
-//            this.frequencyOfWatering = 7; // Nastavení výchozí frekvence na 7dni
-//            System.out.println("vychodzie pocet zalievky je " + basicFrequency);
-//        }
-//        try {
-//            if (dateOfPlanted.isAfter(dateOfWatering)) {
-//                throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
-//            }this.dateOfPlanted = LocalDate.now();
-//        } catch (PlantException e) {
-//            System.err.println("Chyba pri vytvárení rostliny - datum: " + e.getMessage());
-//            this.dateOfPlanted = LocalDate.now();
-//        }
-//    }
     public Plant(String name, String notes, LocalDate dateOfPlanted,
-             LocalDate dateOfWatering, int frequencyOfWatering) throws PlantException {
-    this.name = name;
-    this.notes = notes;
-
-    // Kontrola frekvence zalévání
-    if (frequencyOfWatering <= 0) {
-        throw new PlantException("Neplatna frekvence zálivky: " + frequencyOfWatering);
+                 LocalDate dateOfWatering, int frequencyOfWatering) {
+        this.name = name;
+        this.notes = notes;
+        // Kontrola frekvence zalévání
+        try {
+            if (frequencyOfWatering <= 0) {
+                throw new PlantException("Neplatna frekvence zálivky: " + frequencyOfWatering + "  pouzil som vychodzie nastavenie na 7 dni ");
+            }
+            this.frequencyOfWatering = frequencyOfWatering;
+        } catch (PlantException e) {
+            System.err.println("Chyba při vytváření rostliny: " + e.getMessage());
+            this.frequencyOfWatering = 7; // Nastavení výchozí frekvence na 7 dní
+        }
+        // Kontrola datumu zálivky
+        try {
+            if (dateOfPlanted.isAfter(dateOfWatering)) {
+                throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
+            }
+            this.dateOfPlanted = dateOfPlanted;
+            this.dateOfWatering = dateOfWatering;
+        } catch (PlantException e) {
+            System.err.println("Chyba při vytváření rostliny - datum: " + e.getMessage());
+            this.dateOfPlanted = LocalDate.now();
+            this.dateOfWatering = LocalDate.now();
+        }
     }
-    this.frequencyOfWatering = frequencyOfWatering;
-
-    // Kontrola datumu zálivky
-    if (dateOfPlanted.isAfter(dateOfWatering)) {
-        throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
-    }
-
-    this.dateOfPlanted = dateOfPlanted;
-    this.dateOfWatering = dateOfWatering;
-}
 
 
 
@@ -122,9 +105,14 @@ public class Plant {
     }
     //endregion Get a Set
 
-    public String getWateringInfo() {
+    public String getWateringInfoText() {
         LocalDate nextWateringDate = dateOfWatering.plusDays(frequencyOfWatering);
         return "Název: " + name + "\nDatum poslední zálivky: " + dateOfWatering + "\nDoporučené datum další zálivky: " + nextWateringDate;
+    }
+
+    public String getWateringInfo() {
+        LocalDate nextWateringDate = dateOfWatering.plusDays(frequencyOfWatering);
+        return  name + "\t" + dateOfWatering + "\t" + nextWateringDate;
     }
 
     @Override
@@ -136,5 +124,13 @@ public class Plant {
                 ", dateOfWatering=" + dateOfWatering +
                 ", frequencyOfWatering=" + frequencyOfWatering +
                 '}';
+
+
+             }
+
+    @Override
+    public int compareTo(Plant plant) {
+        return this.name.compareTo(plant.getName());
     }
+
 }

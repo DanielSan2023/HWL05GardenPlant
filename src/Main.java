@@ -1,8 +1,10 @@
 import com.Engeto.Plant.Plant;
 import com.Engeto.Plant.PlantException;
 import com.Engeto.Plant.PlantList;
+import com.Engeto.Plant.WateringDateComparator;
 
 import java.time.LocalDate;
+import java.util.Collections;
 
 public class Main {
     public static void main(String[] args)  {
@@ -10,12 +12,10 @@ public class Main {
 
         try {
       plant1 = new Plant("Růže", "Krásná červená růže", LocalDate.of(2023, 5, 15),
-              LocalDate.of(2023, 5, 20), 5);
+              LocalDate.of(2023, 5, 20), 3);
         plant2 = new Plant("Tulipán", "", LocalDate.of(2023, 5, 15),2);
         plant3 = new Plant("Fikus","Bonsai");
-//       plant4 = new Plant("Cerna Růže", "Krásná čierna růže", LocalDate.of(2023,
-//                7, 15), LocalDate.of(2023, 5, 19), 4);
-            plant5 = new Plant("Kaktus");
+        plant5 = new Plant("Kaktus");
         } catch (PlantException e) {
             System.err.println("Chyba vytvaraní kvetiny: "+e.getLocalizedMessage());
         }
@@ -27,26 +27,19 @@ public class Main {
 
 
 
-//        // Výpis informací o zálivce
-//        System.out.println(plant1.getWateringInfo());
-//        System.out.println(plant2.getWateringInfo());
-//        System.out.println(plant3.getWateringInfo());
-//        System.out.println(plant4.getWateringInfo());
-
+            // Výpis informací o zálivce
+        System.out.println(plant1.getWateringInfoText());
+        System.out.println(plant2.getWateringInfo());
 
         //ukladanie plant do plants listu
         PlantList plants = new PlantList();
         plants.addPlant(plant2);
         plants.addPlant(plant3);
+        //vrati plantu zo zoznamu na 1.poyzicii
         System.out.println(plants.getPlant(0));;
 
         plants.addPlant(plant5);
         System.out.println(plants.getPlant(1));;
-        System.out.println(plant2.getWateringInfo());;
-        System.out.println(plant5.getWateringInfo());
-
-
-
 
         // vypis zoznamu plants
         plants.printPlants();
@@ -65,7 +58,6 @@ public class Main {
             System.err.println("Chyba pri zapise do souboru : "+e.getLocalizedMessage());
         }
 
-
         // print info o zalevce kvetin
         plants.printPlantsWithWateringInfo();
 
@@ -74,7 +66,19 @@ public class Main {
         plants.removePlantByName("Tulipán");   //Odstrani zo zoznamu Tulipan
 
         makeSavePlantsToFile(plants,"NewKvetiny2.txt");
-        plants = makeLoadFromFile("NewKvetiny2.txt");
+        makeLoadFromFile("NewKvetiny2.txt");
+        plants.printPlants();
+
+            //zorad podla nazvu plant/kvetin
+        Collections.sort(plants.getPlants());
+        plants.printPlants();
+
+        // Seřazení rostlin podle datumu poslední zálivky
+        Collections.sort(plants.getPlants(), new WateringDateComparator());
+        plants.printPlantsWithWateringInfo();
+
+
+
 
     }
 

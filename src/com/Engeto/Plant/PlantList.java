@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PlantList {
-    private static List<Plant> plants;  //collekcia pre ukladanie plant
+    private static List<Plant> plants;  //collekcia pre ukladanie kvetin / plant
 
 
     public PlantList() {plants = new ArrayList<>();    }//inicializuje prazdny zoznam
@@ -27,9 +27,9 @@ public class PlantList {
     }
     public List<Plant> getPlants() {
         return plants;
-    }
+    }// vrati zoznam plants
 
-    public void removePlantByName(String name) {
+    public void removePlantByName(String name) {//vymaze podla mena planty
         Plant plantToRemove = null;
         for (Plant plant : plants) {
             if (plant.getName().equals(name)) {
@@ -41,7 +41,7 @@ public class PlantList {
             plants.remove(plantToRemove);
         }
     }
-        public void printPlants() {
+        public void printPlants() {         // vypise na consolu zoznam plants
             for (Plant plant : plants) {
                 System.out.println("Názov kvetiny: " + plant.getName());
             }

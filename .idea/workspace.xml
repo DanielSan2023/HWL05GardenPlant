@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b5c4910-35cd-43a8-8ecb-a1b2f0da1332" name="Changes" comment="add  file for writeToFile NewListPlants.txt">
-      <change afterPath="$PROJECT_DIR$/NewKvetiny.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NewKvetiny2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kvetiny.txt" afterDir="false" />
+    <list default="true" id="7b5c4910-35cd-43a8-8ecb-a1b2f0da1332" name="Changes" comment="add  file for writeToFile NewKvetiny2.txt&#10;&#10;extract method for load and save files">
+      <change afterPath="$PROJECT_DIR$/WateringDateComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Engeto/Plant/WateringDateComparator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewListPlants" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewListPlants.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewKvetiny2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/NewKvetiny2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Engeto/Plant/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Engeto/Plant/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Engeto/Plant/PlantList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Engeto/Plant/PlantList.java" afterDir="false" />
@@ -144,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698406091506</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add  file for writeToFile NewKvetiny2.txt&#10;&#10;extract method for load and save files">
+      <created>1698519793715</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1698519793715</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +172,22 @@
     <MESSAGE value="add loadFromFile method" />
     <MESSAGE value="add  file for load NewPlants.txt" />
     <MESSAGE value="add  file for writeToFile NewListPlants.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="add  file for writeToFile NewListPlants.txt" />
+    <MESSAGE value="add  file for writeToFile NewKvetiny2.txt&#10;&#10;extract method for load and save files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add  file for writeToFile NewKvetiny2.txt&#10;&#10;extract method for load and save files" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/Engeto/Plant/PlantList.java</url>
+          <line>27</line>
+          <properties class="com.Engeto.Plant.PlantList" method="getPlants">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
