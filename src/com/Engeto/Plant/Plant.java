@@ -54,14 +54,7 @@ public class Plant implements Comparable<Plant> {
     }
 
 
-    // Metoda pro výpis informací o rostlině
-    public void printPlantInfo() {
-        System.out.println("Název: " + name);
-        System.out.println("Poznámky: " + notes);
-        System.out.println("Datum zasazení: " + dateOfPlanted);
-        System.out.println("Datum poslední zálivky: " + dateOfWatering);
-        System.out.println("Frekvence zálivky (dny): " + frequencyOfWatering);
-    }
+
 
 //region Get a Set
     public String getName() {

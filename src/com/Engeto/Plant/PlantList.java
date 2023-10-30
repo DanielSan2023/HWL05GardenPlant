@@ -1,7 +1,6 @@
 package com.Engeto.Plant;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -59,8 +58,9 @@ public class PlantList {
     public static void saveToFile(String filename, PlantList plants) throws PlantException {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)))) {
             for (Plant plant: plants.getPlants() ) {
-                writer.println(plant.getName()+ "\t" +plant.getNotes() +"\t"+plant.getFrequencyOfWatering()+"\t"+plant.getDateOfWatering()
-                        +"\t"+plant.getDateOfPlanted()     );
+                writer.println(plant.getName()+ Settings.fileItemDelimiter() +plant.getNotes() +Settings.fileItemDelimiter()
+                        +plant.getFrequencyOfWatering()+Settings.fileItemDelimiter()+plant.getDateOfWatering()
+                        +Settings.fileItemDelimiter()+plant.getDateOfPlanted()     );
             }
         } catch (IOException e) {
             throw new PlantException("Chyba při zápisu do souboru '"+filename+"': "+e.getLocalizedMessage());

@@ -1,7 +1,4 @@
-import com.Engeto.Plant.Plant;
-import com.Engeto.Plant.PlantException;
-import com.Engeto.Plant.PlantList;
-import com.Engeto.Plant.WateringDateComparator;
+import com.Engeto.Plant.*;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -44,13 +41,13 @@ public class Main {
         plants.removePlantByName("Tulipán");
 
         //nacitanie kvetin zo suboru : "Kvetiny.txt"
-        plants = makeLoadFromFile("Kvetiny.txt");
+        plants = makeLoadFromFile(Settings.fileNameforLoad());
 
         // vypisanie kvetin
         plants.printPlantsWithWateringInfo();
 
         //ulozenie zoznamu do suboru :"NewKvetiny.txt"
-        makeSavePlantsToFile(plants,"NewKvetiny.txt");
+        makeSavePlantsToFile(plants,Settings.fileNameforSave());
 
         // print info o zalevce kvetin
         plants.printPlantsWithWateringInfo();
@@ -72,6 +69,7 @@ public class Main {
         System.out.println("\u001B[32mZoradene podla datumu zalievky :\u001B[0m");
         Collections.sort(plants.getPlants(), new WateringDateComparator());
         plants.printPlantsWithWateringInfo();
+
 
         //DOPORUČENÉ OVĚŘENÍ NAVÍC  Poškozený soubor 1  : "kvetiny-spatne-datum.txt")
     //    plants = makeLoadFromFile("kvetiny-spatne-datum.txt");
