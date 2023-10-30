@@ -107,8 +107,15 @@ public class PlantList {
             System.err.println("Chyba: Datum nebyl zadán ve správném formátu. "+ blocks[4].trim());
             System.err.println("Spravny format:   2023-10-26");
         }
+        LocalDate dateOfWatering = null;
+        try {                                   //Osetrenie formatu datumu
+            dateOfWatering = LocalDate.parse(blocks[3].trim());
+            // System.out.println("Datum je správný: " + dateOfPlanted);
+        } catch (DateTimeParseException e) {
+            System.err.println("Chyba: Datum nebyl zadán ve správném formátu. "+ blocks[3].trim());
+            System.err.println("Spravny format:   2023-10-26");
+        }
 
-        LocalDate dateOfWatering = LocalDate.parse(blocks[3].trim());
 
 
         Plant newPlant =new Plant(name,notes,dateOfPlanted,dateOfWatering,frequencyOfWatering);

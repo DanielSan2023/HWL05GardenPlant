@@ -66,16 +66,22 @@ public class Main {
         plants.removePlantByName("Tulipán");   //Odstrani zo zoznamu Tulipan
 
         makeSavePlantsToFile(plants,"NewKvetiny2.txt");
-        makeLoadFromFile("NewKvetiny2.txt");
+        plants = makeLoadFromFile("NewKvetiny2.txt");
         plants.printPlants();
 
             //zorad podla nazvu plant/kvetin
+        System.out.println("Zoradene podla nazvu:");
         Collections.sort(plants.getPlants());
         plants.printPlants();
 
         // Seřazení rostlin podle datumu poslední zálivky
+        System.out.println("Zoradene podla datumu zalievky :");
         Collections.sort(plants.getPlants(), new WateringDateComparator());
         plants.printPlantsWithWateringInfo();
+
+        //DOPORUČENÉ OVĚŘENÍ NAVÍC  Poškozený soubor 1  : "kvetiny-spatne-datum.txt")
+        plants = makeLoadFromFile("kvetiny-spatne-datum.txt");
+
 
 
 
