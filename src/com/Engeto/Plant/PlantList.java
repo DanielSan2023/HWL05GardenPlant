@@ -88,7 +88,7 @@ public class PlantList {
         return result;
     }
     private static void parseLine(String line, PlantList plantList, int lineNumber) throws PlantException {
-        String[] blocks = line.split("\t"); // rozděl řádek na bloky podle tabulatora
+        String[] blocks = line.split(Settings.fileItemDelimiter()); // rozděl řádek na bloky podle tabulatora
         int numOfBlocks = blocks.length;         // Zkontroluj správný počet bloků
         if (numOfBlocks != 5) {
             throw new PlantException(
@@ -97,7 +97,13 @@ public class PlantList {
         }
         String name = blocks[0].trim();         // Převeď textové položky na objekty
         String notes = blocks[1].trim();
-        int frequencyOfWatering = Integer.parseInt(blocks[2].trim());
+        int frequencyOfWatering = 0;
+        try {   // kontrola formatu
+            frequencyOfWatering = Integer.parseInt(blocks[2].trim());
+        } catch (NumberFormatException e) {
+            System.err.println("Nespravny format frekvencie zalievania v subore .");
+            e.printStackTrace();
+        }
 
         LocalDate dateOfPlanted = null;
         try {                                   //Osetrenie formatu datumu
