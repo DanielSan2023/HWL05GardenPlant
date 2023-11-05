@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b5c4910-35cd-43a8-8ecb-a1b2f0da1332" name="Changes" comment="add Settings and adjust code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Engeto/Plant/PlantList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Engeto/Plant/PlantList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Engeto/Plant/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Engeto/Plant/Settings.java" afterDir="false" />
-    </list>
+    <list default="true" id="7b5c4910-35cd-43a8-8ecb-a1b2f0da1332" name="Changes" comment="adjust code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698666049094</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="adjust code">
+      <created>1699198599051</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699198599051</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +214,7 @@
     <MESSAGE value="add file kvetiny-spatne-datum.txt" />
     <MESSAGE value="add file kvetiny-spatne-frekvence.txt" />
     <MESSAGE value="add Settings and adjust code" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Settings and adjust code" />
+    <MESSAGE value="adjust code" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjust code" />
   </component>
 </project>

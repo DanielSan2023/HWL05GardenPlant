@@ -14,7 +14,7 @@ public class Main {
 
         try {
         plant1 = new Plant("Růže", "Krásná červená růže", LocalDate.of(2023, 5, 15),
-              LocalDate.of(2023, 5, 20), 0);
+              LocalDate.of(2023, 5, 20), 1);
         plant2 = new Plant("Tulipán", "", LocalDate.of(2023, 5, 15),2);
         plant3 = new Plant("Fikus","Bonsai");
         plant5 = new Plant("Kaktus");

@@ -10,32 +10,11 @@ public class Plant implements Comparable<Plant> {
     private int frequencyOfWatering;
 
 
-    public Plant(String name, String notes, LocalDate dateOfPlanted,
-                 LocalDate dateOfWatering, int frequencyOfWatering) {
+    public Plant(String name, String notes, LocalDate dateOfPlanted, LocalDate dateOfWatering, int frequencyOfWatering) throws PlantException {
         this.name = name;
         this.notes = notes;
-        // Kontrola frekvence zalévání
-        try {
-            if (frequencyOfWatering <= 0) {
-                throw new PlantException("Neplatna frekvence zálivky: " + frequencyOfWatering + "  pouzil som vychodzie nastavenie na 7 dni ");
-            }
-            this.frequencyOfWatering = frequencyOfWatering;
-        } catch (PlantException e) {
-            System.err.println("Chyba při vytváření rostliny: " + e.getMessage());
-            this.frequencyOfWatering = 7; // Nastavení výchozí frekvence na 7 dní
-        }
-        // Kontrola datumu zálivky
-        try {
-            if (dateOfPlanted.isAfter(dateOfWatering)) {
-                throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
-            }
-            this.dateOfPlanted = dateOfPlanted;
-            this.dateOfWatering = dateOfWatering;
-        } catch (PlantException e) {
-            System.err.println("Chyba při vytváření rostliny - datum: " + e.getMessage());
-            this.dateOfPlanted = LocalDate.now();
-            this.dateOfWatering = LocalDate.now();
-        }
+        setFrequencyOfWatering(frequencyOfWatering);
+        setDateOfPlantedAndWatering(dateOfPlanted, dateOfWatering);
     }
 
 
@@ -73,29 +52,43 @@ public class Plant implements Comparable<Plant> {
         this.notes = notes;
     }
 
-    public LocalDate getDateOfPlanted() {
-        return dateOfPlanted;
+
+
+    public int getFrequencyOfWatering() {
+        return frequencyOfWatering;
     }
 
-    public void setDateOfPlanted(LocalDate dateOfPlanted) {
-        this.dateOfPlanted = dateOfPlanted;
+    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
+        if (frequencyOfWatering <= 0) {
+            throw new PlantException("Neplatná frekvence zálivky: " + frequencyOfWatering + ". Použita výchozí hodnota 7 dní.");
+        }
+        this.frequencyOfWatering = frequencyOfWatering;
+    }
+
+    public LocalDate getDateOfPlanted() {
+        return dateOfPlanted;
     }
 
     public LocalDate getDateOfWatering() {
         return dateOfWatering;
     }
 
-    public void setDateOfWatering(LocalDate dateOfWatering) {
+    public void setDateOfPlanted(LocalDate dateOfPlanted) throws PlantException {
+        setDateOfPlantedAndWatering(dateOfPlanted, this.dateOfWatering);
+    }
+
+    public void setDateOfWatering(LocalDate dateOfWatering) throws PlantException {
+        setDateOfPlantedAndWatering(this.dateOfPlanted, dateOfWatering);
+    }
+
+    private void setDateOfPlantedAndWatering(LocalDate dateOfPlanted, LocalDate dateOfWatering) throws PlantException {
+        if (dateOfPlanted.isAfter(dateOfWatering)) {
+            throw new PlantException("Datum poslední zálivky nemůže být starší než datum zasazení.");
+        }
+        this.dateOfPlanted = dateOfPlanted;
         this.dateOfWatering = dateOfWatering;
     }
 
-    public int getFrequencyOfWatering() {
-        return frequencyOfWatering;
-    }
-
-    public void setFrequencyOfWatering(int frequencyOfWatering) {
-        this.frequencyOfWatering = frequencyOfWatering;
-    }
     //endregion Get a Set
 
     public String getWateringInfoText() {
