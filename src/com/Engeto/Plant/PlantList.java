@@ -18,11 +18,12 @@ public class PlantList {
         plants.add(plant);
     }
 
-    public Plant getPlant(int index) {
+    public Plant getPlant(int index) throws IndexOutOfBoundsException {
         if (index >= 0 && index < plants.size()) {
             return plants.get(index);
+        } else {
+            throw new IndexOutOfBoundsException("Neplatný index: " + index);
         }
-        return null; // Pokud index není platný
     }
     public List<Plant> getPlants() {
         return plants;
@@ -88,45 +89,46 @@ public class PlantList {
         return result;
     }
     private static void parseLine(String line, PlantList plantList, int lineNumber) throws PlantException {
-        String[] blocks = line.split(Settings.fileItemDelimiter()); // rozděl řádek na bloky podle tabulatora
-        int numOfBlocks = blocks.length;         // Zkontroluj správný počet bloků
-        if (numOfBlocks != 5) {
-            throw new PlantException(
-                    "Nesprávný počet položek na řádku: " + line +
-                            "! Počet položek: "+numOfBlocks+".");
+        String[] blocks = line.split(Settings.fileItemDelimiter());
+
+        if (blocks.length != 5) {
+            throw new PlantException("Nesprávný počet položek na řádku: " + line + "! Počet položek: " + blocks.length + ".");
         }
-        String name = blocks[0].trim();         // Převeď textové položky na objekty
+
+        String name = blocks[0].trim();
         String notes = blocks[1].trim();
+
         int frequencyOfWatering = 0;
-        try {   // kontrola formatu
+        try {
             frequencyOfWatering = Integer.parseInt(blocks[2].trim());
         } catch (NumberFormatException e) {
-            System.err.println("Nespravny format frekvencie zalievania v subore .");
-            e.printStackTrace();
+            throw new PlantException("Neplatný formát frekvence zavlažování v souboru.");
         }
 
         LocalDate dateOfPlanted = null;
-        try {                                   //Osetrenie formatu datumu
+        try {
             dateOfPlanted = LocalDate.parse(blocks[4].trim());
-            // System.out.println("Datum je správný: " + dateOfPlanted);
         } catch (DateTimeParseException e) {
-            System.err.println("Chyba: Datum nebyl zadán ve správném formátu. "+ blocks[4].trim());
-            System.err.println("Spravny format:   2023-10-26");
+            throw new PlantException("Chyba: Datum nebyl zadán ve správném formátu: " + blocks[4].trim() +
+                    ". Správný formát: 2023-10-26");
         }
+
         LocalDate dateOfWatering = null;
-        try {                                   //Osetrenie formatu datumu
+        try {
             dateOfWatering = LocalDate.parse(blocks[3].trim());
-            // System.out.println("Datum je správný: " + dateOfPlanted);
         } catch (DateTimeParseException e) {
-            System.err.println("Chyba: Datum nebyl zadán ve správném formátu. "+ blocks[3].trim());
-            System.err.println("Spravny format:   2023-10-26");
+            throw new PlantException("Chyba: Datum nebyl zadán ve správném formátu: " + blocks[3].trim() +
+                    ". Správný formát: 2023-10-26");
         }
-
-
 
         Plant newPlant =new Plant(name,notes,dateOfPlanted,dateOfWatering,frequencyOfWatering);
         PlantList.addPlant(newPlant);  // Ulož vytvořený objekt do plants
     }
+
+
+
+
+
 
 
 }

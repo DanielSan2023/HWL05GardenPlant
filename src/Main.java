@@ -1,7 +1,10 @@
 import com.Engeto.Plant.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args)  {
@@ -56,8 +59,8 @@ public class Main {
         plants.addPlant(plant2);
         plants.removePlantByName("Tulipán");   //Odstrani zo zoznamu Tulipan
 
-        makeSavePlantsToFile(plants,"NewKvetiny2.txt");
-        plants = makeLoadFromFile("NewKvetiny2.txt");
+        makeSavePlantsToFile(plants,Settings.getNewFileSaveNameValue());
+        plants = makeLoadFromFile(Settings.getNewFileSaveNameValue());
         plants.printPlants();
 
             //zorad podla nazvu plant/kvetin
@@ -76,6 +79,8 @@ public class Main {
 
         //DOPORUČENÉ OVĚŘENÍ NAVÍC  Poškozený soubor 1  : "kvetiny-spatne-frekvence.txt")
     //    plants = makeLoadFromFile("kvetiny-spatne-frekvence.txt");
+
+
 
 
     }

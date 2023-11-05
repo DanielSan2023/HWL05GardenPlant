@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b5c4910-35cd-43a8-8ecb-a1b2f0da1332" name="Changes" comment="add file kvetiny-spatne-frekvence.txt">
+    <list default="true" id="7b5c4910-35cd-43a8-8ecb-a1b2f0da1332" name="Changes" comment="add Settings and adjust code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Engeto/Plant/PlantList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Engeto/Plant/PlantList.java" afterDir="false" />
@@ -46,6 +46,9 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -167,7 +170,21 @@
       <option name="project" value="LOCAL" />
       <updated>1698664712143</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add Settings and adjust code">
+      <created>1698666019984</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1698666019984</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add Settings and adjust code">
+      <created>1698666049094</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1698666049094</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,6 +211,7 @@
     <MESSAGE value="add WateringDateComparator class&#10;&#10;compareTo name and last Date" />
     <MESSAGE value="add file kvetiny-spatne-datum.txt" />
     <MESSAGE value="add file kvetiny-spatne-frekvence.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="add file kvetiny-spatne-frekvence.txt" />
+    <MESSAGE value="add Settings and adjust code" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Settings and adjust code" />
   </component>
 </project>
